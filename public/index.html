@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="CINEMA PLUS - اكتشف الأفلام والمسلسلات وتابع محتواك المفضل.">
+  <title>CINEMA PLUS | عالم السينما</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">C</span><span>CINEMA <b>PLUS</b></span></a>
+  <nav class="nav">
+    <a class="active" href="#" data-kind="">الرئيسية</a><a href="#catalog" data-kind="movie">أفلام</a><a href="#catalog" data-kind="series">مسلسلات</a>
+  </nav>
+  <div class="header-actions">
+    <label class="search"><span>⌕</span><input id="search" placeholder="ابحث عن فيلم أو مسلسل..."></label>
+    <button class="ghost" id="favoritesBtn">♡ <span>قائمتي</span></button>
+    <button class="primary small" id="accountBtn">دخول</button>
+  </div>
+</header>
+<main>
+  <section class="hero" id="hero">
+    <div class="hero-shade"></div>
+    <div class="hero-content">
+      <span class="eyebrow"><i></i> عالمك السينمائي في مكان واحد</span>
+      <h1>كل الحكايات<br><em>تبدأ من هنا.</em></h1>
+      <p>اكتشف عالماً من الأفلام والمسلسلات. ابحث، أضف إلى قائمتك، وتابع ما تحب.</p>
+      <div class="hero-buttons"><a class="primary" href="#catalog">اكتشف المحتوى <b>←</b></a><button class="outline" id="heroFeatured">⭐ المميز</button></div>
+    </div>
+    <div class="hero-note"><span>01</span><div><b>اختيارات تستحق المشاهدة</b><small>تجربة سينمائية بتصميم جديد</small></div></div>
+  </section>
+
+  <section class="content-section" id="catalog">
+    <div class="section-head">
+      <div><span class="eyebrow muted">اختار حكايتك</span><h2 id="sectionTitle">اكتشف <em>المحتوى</em></h2></div>
+      <div class="filters">
+        <select id="category"><option value="">كل التصنيفات</option></select>
+        <select id="sort"><option value="new">الأحدث</option><option value="rating">الأعلى تقييماً</option><option value="old">الأقدم</option></select>
+      </div>
+    </div>
+    <div class="chips"><button class="chip selected" data-filter="">الكل</button><button class="chip" data-filter="movie">أفلام</button><button class="chip" data-filter="series">مسلسلات</button></div>
+    <div class="grid" id="grid"><div class="loading">جاري تحميل المحتوى...</div></div>
+    <p class="empty hidden" id="empty">لا توجد نتائج مطابقة لبحثك.</p>
+  </section>
+
+  <section class="feature-strip"><div><span class="eyebrow">CINEMA PLUS</span><h2>ليلتك تستاهل <em>فيلم حلو.</em></h2><p>مكتبة منظمة تساعدك تكتشف عملك القادم.</p></div><a href="#catalog" class="text-link">تصفح المكتبة <b>←</b></a></section>
+</main>
+<footer><a class="brand" href="#"><span class="brand-mark">C</span><span>CINEMA <b>PLUS</b></span></a><p>© <span id="yearNow"></span> CINEMA PLUS. جميع الحقوق محفوظة.</p><small>الموقع كتالوج تجريبي؛ أضف فقط المحتوى وروابط المشاهدة أو التحميل المصرح بها.</small></footer>
+
+<div class="modal hidden" id="detailModal"><div class="modal-backdrop" data-close></div><div class="modal-box detail-box"><button class="close" data-close>×</button><div id="detailContent"></div></div></div>
+<div class="modal hidden" id="authModal"><div class="modal-backdrop" data-close></div><div class="modal-box auth-box"><button class="close" data-close>×</button><div class="auth-brand">CINEMA <b>PLUS</b></div><h2 id="authTitle">أهلاً بعودتك</h2><p class="sub" id="authSub">سجّل دخولك لمتابعة قائمتك.</p>
+  <form id="authForm"><div id="nameField" class="field hidden"><label>الاسم</label><input name="name" autocomplete="name"></div><div class="field"><label>البريد الإلكتروني</label><input name="email" type="email" required autocomplete="email"></div><div class="field"><label>كلمة المرور</label><input name="password" type="password" minlength="8" required autocomplete="current-password"></div><button class="primary full" id="authSubmit">تسجيل الدخول</button></form>
+  <p class="switch-auth" id="switchAuth">ليس لديك حساب؟ <button>إنشاء حساب</button></p><p class="form-error" id="authError"></p>
+</div></div>
+<div class="modal hidden" id="adminModal"><div class="modal-backdrop" data-close></div><div class="modal-box admin-box"><button class="close" data-close>×</button><h2>لوحة التحكم</h2><p class="sub">إدارة الأفلام والمسلسلات وروابط المحتوى المرخص.</p><form id="titleForm" class="admin-form">
+  <input type="hidden" name="id"><div class="field"><label>اسم العمل *</label><input name="title" required></div><div class="field"><label>الاسم الأصلي</label><input name="original_title"></div>
+  <div class="field"><label>النوع *</label><select name="kind"><option value="movie">فيلم</option><option value="series">مسلسل</option></select></div><div class="field"><label>التصنيف</label><input name="category" placeholder="دراما، أكشن..."></div>
+  <div class="field"><label>الدولة</label><input name="country"></div><div class="field"><label>السنة</label><input name="year" type="number" min="1900" max="2100"></div>
+  <div class="field"><label>التقييم من 10</label><input name="rating" type="number" min="0" max="10" step=".1"></div><div class="field"><label>رابط صورة البوستر</label><input name="poster" type="url"></div>
+  <div class="field"><label>رابط صورة الخلفية</label><input name="backdrop" type="url"></div><div class="field"><label>رابط المشاهدة المرخص</label><input name="watch_url" type="url"></div>
+  <div class="field"><label>رابط التحميل المصرح</label><input name="download_url" type="url"></div>
+  <div class="field wide"><label>الوصف</label><textarea name="description" rows="3"></textarea></div>
+  <label class="check wide"><input name="featured" type="checkbox"> عرض في قسم المميز</label><button class="primary full wide">حفظ المحتوى</button>
+</form><h3>المحتوى الحالي</h3><div id="adminList" class="admin-list"></div><p class="form-error" id="adminError"></p></div></div>
+<div class="toast" id="toast"></div>
+<script src="/app.js"></script>
+</body></html>
