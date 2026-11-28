@@ -101,7 +101,7 @@ $("#titleForm").addEventListener("submit",async e=>{
   e.preventDefault();const f=e.currentTarget,fd=new FormData(f),body=Object.fromEntries(fd.entries());body.featured=fd.has("featured");
   try{await api(editingId?"/api/admin/titles/"+editingId:"/api/admin/titles",{method:editingId?"PUT":"POST",body:JSON.stringify(body)});f.reset();editingId=null;f.elements.id.value="";await loadAdminList();await loadTitles();await loadCategories();toast("تم حفظ المحتوى بنجاح")}catch(err){$("#adminError").textContent=err.message}
 });
-$("#accountBtn").onclick=openAuth;$("#favoritesBtn").onclick=showFavorites;
+$("#favoritesBtn").onclick=showFavorites;
 $("#heroFeatured").onclick=()=>{activeKind="";$("#search").value="";loadTitles();$("#catalog").scrollIntoView()};
 $("#search").addEventListener("input",()=>loadTitles());$("#category").addEventListener("change",loadTitles);$("#sort").addEventListener("change",loadTitles);
 $$("[data-kind]").forEach(a=>a.addEventListener("click",()=>{activeKind=a.dataset.kind;$$("[data-kind]").forEach(x=>x.classList.toggle("active",x===a));$$(".chip").forEach(x=>x.classList.toggle("selected",x.dataset.filter===activeKind));loadTitles()}));
